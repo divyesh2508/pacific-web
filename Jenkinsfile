@@ -3,6 +3,7 @@ pipeline {
 
     parameters {
         choice(name: 'BRANCH', choices: ['main', 'develop', 'feature'], description: 'Select the branch to build')
+        choice(name: 'DEPLOY_SCRIPT', choices: ['deploy_script_1.sh', 'deploy_script_2.sh', 'deploy_script_3.sh'], description: 'Select the deployment script')
     }
     stages {
         stage('Checkout Code') {
