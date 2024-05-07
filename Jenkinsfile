@@ -1,5 +1,10 @@
 pipeline {
     agent any
+    stage('Get Approval') {
+            steps {
+                input(message: 'Please approve this build.', submitter: 'admin')
+            }
+        }
     stages {
         stage('Checkout Code') {
             steps {
@@ -21,11 +26,7 @@ pipeline {
                 }
             }
         }
-       stage('Get Approval') {
-            steps {
-                input(message: 'Please approve this build.', submitter: 'admin')
-            }
-        }
+       
         stage('Build Docker Image') {
             steps {
                 script {
