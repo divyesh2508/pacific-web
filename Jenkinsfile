@@ -1,11 +1,12 @@
 pipeline {
     agent any
-    stage('Get Approval') {
+    
+    stages {
+        stage('Get Approval') {
             steps {
                 input(message: 'Please approve this build.', submitter: 'admin')
             }
         }
-    stages {
         stage('Checkout Code') {
             steps {
                 script {
