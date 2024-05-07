@@ -13,14 +13,14 @@ pipeline {
                     currentBranch = currentBranch.substring(currentBranch.lastIndexOf('/') + 1)
 
                     // Check if the Jenkinsfile branch (develop) matches the build branch
-                    if (currentBranch != 'main') {
+                    if (currentBranch != parameters.BRANCH) {
                         error "Branch name mismatch! Build branch is '$currentBranch' but Jenkinsfile branch is 'develop'."
                         // Stop further execution if branch names don't match
                         return
                     }
                     
                     // Checkout code since branch names match (assuming 'develop')
-                    git branch: 'main', // Assuming your Jenkinsfile is on 'develop' branch
+                    git branch: parameters.BRANCH, // Assuming your Jenkinsfile is on 'develop' branch
                         credentialsId: 'divyesh-git-cred',
                         url: 'https://github.com/divyesh2508/pacific-web.git'
                 }
