@@ -20,8 +20,10 @@ pipeline {
     stage('Execute Downloaded Jenkinsfile') {
         steps {
                 script {
-                    // Assuming Jenkinsfile content is a valid Groovy script
-                    sh 'chmod +x Jenkinsfile && ./Jenkinsfile'        
+                    // Assuming Jenkinsfile content is a valid Groovy script 
+                    sh 'chmod +x Jenkinsfile'
+                    sh './Jenkinsfile'
+     
                 
                     }
                 }
