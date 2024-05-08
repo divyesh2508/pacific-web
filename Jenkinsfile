@@ -17,5 +17,16 @@ pipeline {
         }
         
         // Rest of your pipeline stages assuming downloaded Jenkinsfile defines further steps
+    stage('Execute Downloaded Jenkinsfile') {
+        steps {
+                script {
+                    // Assuming Jenkinsfile content is a valid Groovy script
+                    sh """
+                        chmod +x Jenkinsfile  // Make downloaded file executable (if needed)
+                        ./Jenkinsfile         // Execute the downloaded Jenkinsfile script
+                        """
+                    }
+                }
+            }
     }
 }
