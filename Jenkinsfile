@@ -21,10 +21,8 @@ pipeline {
         steps {
                 script {
                     // Assuming Jenkinsfile content is a valid Groovy script
-                    sh """
-                        chmod +x Jenkinsfile  // Make downloaded file executable (if needed)
-                        ./Jenkinsfile         // Execute the downloaded Jenkinsfile script
-                        """
+                    sh './Jenkinsfile'        
+                
                     }
                 }
             }
