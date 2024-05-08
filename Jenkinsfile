@@ -1,6 +1,6 @@
 pipeline {
     agent any
-    
+
     parameters {
         choice(name: 'BRANCH', choices: ['main', 'develop', 'feature'], description: 'Select the branch to build')
     }
@@ -26,8 +26,8 @@ pipeline {
                     
                     // Checkout code since branch names match (assuming 'develop')
                     git branch: 'develop', // Assuming your Jenkinsfile is on 'develop' branch
-                        credentialsId: 'git-cred',
-                        url: 'https://github.com/Aesha001/Pacific_Project'
+                        credentialsId: 'divyesh-git-cred',
+                        url: 'https://github.com/divyesh2508/pacific-web.git'
                 }
             }
         }
