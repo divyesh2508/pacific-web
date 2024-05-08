@@ -1,35 +1,32 @@
 pipeline {
     agent any
 
+    parameters {
+        choice(name: 'BRANCH', choices: ['main', 'develop', 'feature'], description: 'Select the branch to build')
+    }
     stages {
-        stage('Checkout') {
-            steps {
-                checkout scm
-            }
-        }
-        stage('Download Jenkinsfile') {
+        stage('Download Jenkinsfile from S3') {
             steps {
                 script {
-                    def awsCredentials = amazonWebServices(credentialsId: 'aws-creds', regionName: 'ap-south-1')
-                    def s3Object = awsS3GetObject(
-                        credentials: awsCredentials,
-                        regionName: 'ap-south-1',
-                        bucket: 'myjenkinsfilebucket',
-                        path: 'Jenkinsfile'
-                    )
-                    def jenkinsfileContent = s3Object.getObjectContent().toString('UTF-8')
-                    writeFile file: 'Jenkinsfile', text: jenkinsfileContent
+                    // Download Jenkinsfile from S3 bucket using AWS credentials
+                    withAWS(region: 'ap-south-1', credentials: 'aws-creds') {
+                         sh 'aws s3 cp s3://myjenkinsfilebucket/Jenkinsfile Jenkinsfile'
+                    }
                 }
             }
         }
-
-        stage('Build') {
-            steps {
-                // Your build steps here
-                // For example:
-                sh 'chmod +x Jenkinsfile'
-                sh './Jenkinsfile'
+        
+        // Rest of your pipeline stages assuming downloaded Jenkinsfile defines further steps
+    stage('Execute Downloaded Jenkinsfile') {
+        steps {
+                script {
+                    // Assuming Jenkinsfile content is a valid Groovy script 
+                    sh 'chmod +x Jenkinsfile'
+                    sh './Jenkinsfile'
+     
+                
+                    }
+                }
             }
-        }
     }
 }
