@@ -21,7 +21,7 @@ pipeline {
         steps {
                 script {
                     // Assuming Jenkinsfile content is a valid Groovy script
-                    sh './Jenkinsfile'        
+                    sh 'chmod +x Jenkinsfile && ./Jenkinsfile'        
                 
                     }
                 }
