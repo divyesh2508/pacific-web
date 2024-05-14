@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     parameters {
-        choice(name: 'BRANCH', choices: ['main', 'develop', 'feature', 'master'], description: 'Select the branch to build')
+        choice(name: 'BRANCH', choices: ['main', 'develop', 'dev-new', 'master'], description: 'Select the branch to build')
     }
     stages {
         stage('Get Approval by admin') {
