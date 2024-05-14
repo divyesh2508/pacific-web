@@ -7,7 +7,7 @@ pipeline {
     stages {
         stage('Get Approval') {
             steps {
-                input(message: 'Please approve this build.', submitter: 'admin')
+                input(message: 'Please approve this build for build.', submitter: 'admin')
             }
         }
         stage('Checkout Code') {
