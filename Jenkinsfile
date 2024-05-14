@@ -14,7 +14,8 @@ pipeline {
             steps {
                 script {
                     // Get the current branch name
-                    def currentBranch = scm.branches[0].name // name of branch
+                    def currentBranch = scm.branches[0].namecho "# Test change" >> Jenkinsfile
+e // name of branch
                     currentBranch = currentBranch.substring(currentBranch.lastIndexOf('/') + 1)
 
                     // Check if the Jenkinsfile branch (develop) matches the build branch
@@ -40,4 +41,6 @@ pipeline {
             }
         }
     }
-}# Test change
+}
+// Test change
+// Test change
