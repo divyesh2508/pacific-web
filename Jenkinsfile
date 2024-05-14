@@ -5,7 +5,7 @@ pipeline {
         choice(name: 'BRANCH', choices: ['main', 'develop', 'feature', 'master'], description: 'Select the branch to build')
     }
     stages {
-        stage('Get Approval') {
+        stage('Get Approval by admin') {
             steps {
                 input(message: 'Please approvby dk.', submitter: 'admin')
             }
@@ -40,4 +40,4 @@ pipeline {
             }
         }
     }
-}
+}# Test change
