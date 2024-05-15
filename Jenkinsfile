@@ -2,10 +2,10 @@ pipeline {
     agent any
 
     parameters {
-        choice(name: 'BRANCH', choices: ['main', 'develop', 'dev-new', 'master'], description: 'Select the branch to build')
+        choice(name: 'BRANCH', choices: ['main', 'develop', 'feature', 'master'], description: 'Select the branch to build')
     }
     stages {
-        stage('Get Approval by admin') {
+        stage('Get Approval') {
             steps {
                 input(message: 'Please approvby dk.', submitter: 'admin')
             }
@@ -14,8 +14,7 @@ pipeline {
             steps {
                 script {
                     // Get the current branch name
-                    def currentBranch = scm.branches[0].namecho "# Test change" >> Jenkinsfile
-e // name of branch
+                    def currentBranch = scm.branches[0].name // name of branch
                     currentBranch = currentBranch.substring(currentBranch.lastIndexOf('/') + 1)
 
                     // Check if the Jenkinsfile branch (develop) matches the build branch
