@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('Checkout Code') {
             steps {
-                git branch: 'master',
+                git branch: 'main',
                    credentialsId: 'git-cred',
                    url: 'https://github.com/Aesha001/Pacific_Project'
             }
