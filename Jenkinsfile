@@ -50,11 +50,14 @@ pipeline {
         stage('Load .env') {
             steps {
                 script {
-                    def envFile = readFile '.env'
-                    envFile.split('\n').each { line ->
-                        if (line && !line.startsWith('#')) {
-                            def (key, value) = line.split('=', 2)
-                            env."${key.trim()}" = value.trim()
+                    // Read .env file content
+                    def envFile = readFile('.env').trim()
+                    
+                    // Split by lines and set environment variables
+                    envFile.readLines().each { line ->
+                        def keyValue = line.split('=')
+                        if (keyValue.size() == 2) {
+                            env."${keyValue[0].trim()}" = keyValue[1].trim()
                         }
                     }
                 }
