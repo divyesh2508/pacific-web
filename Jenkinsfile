@@ -42,7 +42,7 @@ pipeline {
         stage('Download .env from S3') {
             steps {
                 withAWS(region: "${AWS_REGION}", credentials: "${AWS_CREDENTIALS_ID}") {
-                    s3Download(file: '.env', bucket: 'mytestbuckedk', path: '/.env')
+                    s3Download(file: '.env', bucket: 'mytestbuckedk', path: '.env')
                 }
             }
         }
