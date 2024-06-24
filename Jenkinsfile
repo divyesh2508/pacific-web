@@ -39,30 +39,30 @@ pipeline {
             }
         }
 
-        stage('Download .env from S3') {
-            steps {
-                withAWS(region: "${AWS_REGION}", credentials: "${AWS_CREDENTIALS_ID}") {
-                    s3Download(file: '.env', bucket: 'mytestbuckedk', path: '.env')
-                }
-            }
-        }
+        // stage('Download .env from S3') {
+        //     steps {
+        //         withAWS(region: "${AWS_REGION}", credentials: "${AWS_CREDENTIALS_ID}") {
+        //             s3Download(file: '.env', bucket: 'mytestbuckedk', path: '.env')
+        //         }
+        //     }
+        // }
 
-        stage('Load .env') {
-            steps {
-                script {
-                    // Read .env file content
-                    def envFile = readFile('.env').trim()
+        // stage('Load .env') {
+        //     steps {
+        //         script {
+        //             // Read .env file content
+        //             def envFile = readFile('.env').trim()
                     
-                    // Split by lines and set environment variables
-                    envFile.readLines().each { line ->
-                        def keyValue = line.split('=')
-                        if (keyValue.size() == 2) {
-                            env."${keyValue[0].trim()}" = keyValue[1].trim()
-                        }
-                    }
-                }
-            }
-        }
+        //             // Split by lines and set environment variables
+        //             envFile.readLines().each { line ->
+        //                 def keyValue = line.split('=')
+        //                 if (keyValue.size() == 2) {
+        //                     env."${keyValue[0].trim()}" = keyValue[1].trim()
+        //                 }
+        //             }
+        //         }
+        //     }
+        // }
 
         stage('Build Docker Image') {
             steps {
