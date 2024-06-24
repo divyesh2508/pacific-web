@@ -53,6 +53,9 @@ pipeline {
                     // Read .env file content
                     def envFile = readFile("${params.BRANCH}.env").trim()
                     
+                    // Print .env file content to console
+                    echo "Contents of ${params.BRANCH}.env:\n${envFile}"
+                    
                     // Split by lines and set environment variables
                     envFile.readLines().each { line ->
                         def keyValue = line.split('=')
@@ -63,6 +66,7 @@ pipeline {
                 }
             }
         }
+
 
         stage('Build Docker Image') {
             steps {
