@@ -3,6 +3,7 @@ ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
 WORKDIR /app
 COPY . /app
+COPY .env /app/.env
 RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
 EXPOSE 8000
